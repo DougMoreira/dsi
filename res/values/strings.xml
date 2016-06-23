@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    
+    <string name="hello_world">Hello motorola!</string>
+    <string name="action_settings">Configurações</string>
+    <string name="saudacao">Olá</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="saudacaoTextView">Olá</string>
+    
+    <string name="app_name">DSI - androidApp</string>
+    <string name="labelServidor">Servidor</string>
+    <string name="textoBotaoLogin">Login</string>
+    <string name="labelPorta">Porta</string>
+    <string name="enderecoServidorHint">127.0.0.1</string>
+    <string name="portaServidorHint">9999</string>
+    
+    
+    
+    
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelServidor" />
+
+    <EditText
+        android:id="@+id/enderecoServidor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="0123456789."
+        android:inputType="numberDecimal"
+        android:maxLength="15"
+        android:hint="@string/enderecoServidorHint" >
+
+        <requestFocus />
+    </EditText>
+    
+     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelPorta" />
+
+   <EditText
+        android:id="@+id/portaServidor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:maxLength="5"
+        android:hint="@string/portaServidorHint" >
+
+    </EditText>
+
+    <Button
+        android:id="@+id/botaoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="surpreenderUsuario"
+        android:text="@string/textoBotaoLogin" />
+
+</LinearLayout>
