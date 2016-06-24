@@ -36,12 +36,11 @@
 
     </EditText>
 
-    <Button
-        android:id="@+id/botaoLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="surpreenderUsuario"
-        android:text="@string/textoBotaoLogin" />
+   <Button
+       android:id="@+id/botaoLogin"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:onClick="login"
+       android:text="@string/textoBotaoLogin" />
 
 </LinearLayout>

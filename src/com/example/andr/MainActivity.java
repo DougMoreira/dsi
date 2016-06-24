@@ -3,12 +3,12 @@ package com.example.andr;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -16,16 +16,25 @@ public class MainActivity extends Activity {
 	private EditText nomeEditText;
 	private TextView saudacaoTextView;
 	private String saudacao;
+	private EditText enderecoServidor;
+	private EditText portaServidor;
+	private SocketTask st;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        
+        
         this.nomeEditText = (EditText) findViewById(R.id.enderecoServidor);
         this.saudacaoTextView =
         (TextView) findViewById(R.id.saudacaoTextView);
         this.saudacao = getResources().getString(R.string.saudacao);
+        
+        
+        
+        
 
     }
     
@@ -37,6 +46,20 @@ public class MainActivity extends Activity {
     	intent.putExtra(SaudacaoActivity.EXTRA_NOME_USUARIO, texto);
     	startActivity(intent);
     	}
+    
+    public void login(View v){
+    	 this.enderecoServidor = (EditText) findViewById(R.id.enderecoServidor);
+    	 this.portaServidor = (EditText) findViewById(R.id.portaServidor);
+    	 
+    	 String servidor = enderecoServidor.getText().toString();
+    	 int porta = Integer.parseInt(portaServidor.getText().toString());
+    	 
+    	 st = new SocketTask(servidor, porta, 10000);
+    	 Toast.makeText(MainActivity.this, ":" + st.doInBackground().booleanValue(), Toast.LENGTH_LONG).show();
+    	 st.execute();
+    	
+    	
+    }
     
 /* 1 */    
 //    public void surpreenderUsuario(View v) {
