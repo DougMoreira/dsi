@@ -1,7 +1,10 @@
 package com.example.andr;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,9 +48,14 @@ public class MainActivity extends Activity {
 		int porta = Integer.parseInt(portaServidor.getText().toString());
 		Toast.makeText(MainActivity.this, "IP: " + servidor + " | Porta: " + porta , Toast.LENGTH_LONG).show();
 
-		st = new SocketTask(servidor, porta, 10000);
+		st = new SocketTask(servidor, porta, 10000, pegarMac());
 		st.execute();
 
+	}
+	public String pegarMac(){
+		WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		WifiInfo wInfo = wifiManager.getConnectionInfo();
+		return wInfo.getMacAddress();
 	}
 
 	@Override

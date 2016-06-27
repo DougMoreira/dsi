@@ -22,11 +22,13 @@ public class SocketTask extends AsyncTask<String, String, Boolean> {
 	private String enderecoServidor;
 	private int portaServidor;
 	private int timeout;
+	private String mac;
 
-	public SocketTask(String enderecoServidor, int portaServidor, int timeout){
+	public SocketTask(String enderecoServidor, int portaServidor, int timeout, String mac){
 		this.enderecoServidor = enderecoServidor;
 		this.portaServidor = portaServidor;
 		this.timeout = timeout;
+		this.mac = mac;
 	}
 
 	public void sendData(String data) throws IOException {
@@ -43,23 +45,27 @@ public class SocketTask extends AsyncTask<String, String, Boolean> {
 			socket = new Socket();
 			socket.connect(sockaddr, timeout);
 			
-			Comando comando = new Comando(new Dispositivo(" ", 1));
+			Dispositivo dispositivo = new Dispositivo(this.mac, 12345);
+
+			Comando comando = new Comando();
 			comando.setParametros("ls");
 
 			if(socket.isConnected()){
 				estadoConexao = true;
 				ObjectOutputStream oos = null;
 				try {
-				
-				oos = new ObjectOutputStream( socket.getOutputStream() );
-				    //Supondo que serialDoc já esteja setado...
-				    oos.writeObject(comando);
-				    oos.flush();
-				    }catch( Exception e ){ }
-				    finally{ 
-				        oos.close(); 
-				        socket.close();
-				    }
+
+					oos = new ObjectOutputStream( socket.getOutputStream() );
+					
+					oos.writeObject(comando);
+					oos.flush();
+					
+					
+				}catch( Exception e ){ }
+				finally{ 
+					oos.close(); 
+					socket.close();
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
