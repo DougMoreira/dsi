@@ -2,10 +2,15 @@ package com.example.andr;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+
+import modelo.entidade.Comando;
+import modelo.entidade.Dispositivo;
+
 
 import android.os.AsyncTask;
 
@@ -37,9 +42,24 @@ public class SocketTask extends AsyncTask<String, String, Boolean> {
 			SocketAddress sockaddr = new InetSocketAddress(enderecoServidor, portaServidor);
 			socket = new Socket();
 			socket.connect(sockaddr, timeout);
+			
+			Comando comando = new Comando(new Dispositivo(" ", 1));
+			comando.setParametros("ls");
 
 			if(socket.isConnected()){
 				estadoConexao = true;
+				ObjectOutputStream oos = null;
+				try {
+				
+				oos = new ObjectOutputStream( socket.getOutputStream() );
+				    //Supondo que serialDoc já esteja setado...
+				    oos.writeObject(comando);
+				    oos.flush();
+				    }catch( Exception e ){ }
+				    finally{ 
+				        oos.close(); 
+				        socket.close();
+				    }
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
