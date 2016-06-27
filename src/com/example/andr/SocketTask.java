@@ -44,25 +44,27 @@ public class SocketTask extends AsyncTask<String, String, Boolean> {
 			SocketAddress sockaddr = new InetSocketAddress(enderecoServidor, portaServidor);
 			socket = new Socket();
 			socket.connect(sockaddr, timeout);
-			
+
 			Dispositivo dispositivo = new Dispositivo(this.mac, 12345);
 
 			Comando comando = new Comando();
-			comando.setParametros("ls");
+			comando.setParametros("firefox");
 
 			if(socket.isConnected()){
 				estadoConexao = true;
 				ObjectOutputStream oos = null;
 				try {
-
-					oos = new ObjectOutputStream( socket.getOutputStream() );
-					
-					oos.writeObject(comando);
+					oos = new ObjectOutputStream(socket.getOutputStream());
+					oos.writeObject(dispositivo);
 					oos.flush();
 					
+					oos = new ObjectOutputStream(socket.getOutputStream());
+					oos.writeObject(comando);
+					oos.flush();
+
+				} catch(Exception e) {
 					
-				}catch( Exception e ){ }
-				finally{ 
+				} finally{ 
 					oos.close(); 
 					socket.close();
 				}
