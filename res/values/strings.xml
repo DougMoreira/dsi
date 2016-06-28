@@ -10,10 +10,12 @@
     
     <string name="app_name">DSI - androidApp</string>
     <string name="labelServidor">Servidor</string>
-    <string name="textoBotaoLogin">Login</string>
+    <string name="textoBotaoLogin">Executar</string>
     <string name="labelPorta">Porta</string>
     <string name="enderecoServidorHint">127.0.0.1</string>
     <string name="portaServidorHint">9999</string>
+    <string name="labelComando">Comando</string>
+     <string name="comandoHint">Comando</string>
     
     
     

@@ -35,6 +35,19 @@
         android:hint="@string/portaServidorHint" >
 
     </EditText>
+    
+   <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/labelComando" />
+
+   <EditText
+        android:id="@+id/entradaComando"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/comandoHint" >
+
+    </EditText>
 
    <Button
        android:id="@+id/botaoLogin"

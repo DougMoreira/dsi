@@ -48,7 +48,7 @@ public class SocketTask extends AsyncTask<String, String, Boolean> {
 			Dispositivo dispositivo = new Dispositivo(this.mac, 12345);
 
 			Comando comando = new Comando();
-			comando.setParametros("firefox");
+			comando.setParametros(params[0]);
 
 			if(socket.isConnected()){
 				estadoConexao = true;

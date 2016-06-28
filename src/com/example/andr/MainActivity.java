@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
 	private String saudacao;
 	private EditText enderecoServidor;
 	private EditText portaServidor;
+	private EditText entradaComando;
 	private SocketTask st;
 
 	@Override
@@ -43,13 +44,15 @@ public class MainActivity extends Activity {
 	public void login(View v) throws InterruptedException{
 		this.enderecoServidor = (EditText) findViewById(R.id.enderecoServidor);
 		this.portaServidor = (EditText) findViewById(R.id.portaServidor);
+		this.entradaComando = (EditText) findViewById(R.id.entradaComando);
 
 		String servidor = enderecoServidor.getText().toString();
+		String comando = entradaComando.getText().toString();
 		int porta = Integer.parseInt(portaServidor.getText().toString());
 		Toast.makeText(MainActivity.this, "IP: " + servidor + " | Porta: " + porta , Toast.LENGTH_LONG).show();
 
 		st = new SocketTask(servidor, porta, 10000, pegarMac());
-		st.execute();
+		st.execute(comando);
 
 	}
 	public String pegarMac(){
